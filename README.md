@@ -251,6 +251,24 @@ Para cada categoría, probamos valores que están justo en el límite para asegu
 * **Seguridad:** Se rechazan clasificaciones para resultados de IMC negativos o absurdamente altos (más de 150).
 
 </details>
+<details>
+<summary><b>Pruebas de Tasa Metabólica Basal (TMB o BMR)</b></summary>
+
+* **Cálculo correcto (Mifflin-St Jeor):**
+    - Hombre: 70kg, 175cm, 30 años → 1648.75 kcal
+    - Mujer: 60kg, 165cm, 30 años → 1320.25 kcal
+
+* **Validación de sexo:**
+    - El sistema debe aplicar +5 en hombres y -161 en mujeres.
+
+* **Pruebas de límites biológicos:**
+    - Edad negativa → Error
+    - Edad nula (0) → Error
+    - Peso fuera de rango (1–700 kg) → Error
+    - Altura fuera de rango (30–300 cm) → Error
+
+
+</details>
 
 
 ## Instalación y ejecución
