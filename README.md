@@ -252,6 +252,47 @@ Para cada categoría, probamos valores que están justo en el límite para asegu
 
 </details>
 
+<details>
+<summary><b>Pruebas de Tasa Metabólica Basal (TMB / BMR)</b></summary>
+
+### Objetivo
+Verificar el correcto cálculo de la Tasa Metabólica Basal (BMR) utilizando la ecuación de Harris-Benedict (revisada), así como validar la gestión de errores ante datos fisiológicamente imposibles.
+
+---
+
+<details>
+<summary><b>Pruebas de Tasa Metabólica Basal (TMB / BMR)</b></summary>
+
+### Objetivo
+Validar el cálculo correcto de la **Tasa Metabólica Basal (BMR)** mediante la ecuación de **Mifflin-St Jeor**, así como la gestión de errores ante datos inválidos o nulos.
+
+### Fórmulas utilizadas
+
+- **Hombres:**  
+  BMR = (10 × peso) + (6.25 × altura) − (5 × edad) + 5
+
+- **Mujeres:**  
+  BMR = (10 × peso) + (6.25 × altura) − (5 × edad) − 161
+
+---
+
+### Casos de prueba
+
+**Cálculo válido (hombre)**  
+Se verifica el cálculo correcto con valores normales y tolerancia ±0.01.
+
+**Cálculo válido (mujer)**  
+Se comprueba la correcta aplicación de la constante específica por sexo.
+
+**Validación de datos inválidos**
+- Peso negativo → InvalidHealthDataException
+- Peso igual a cero → excepción
+- Altura negativa → excepción
+- Altura igual a cero → excepción
+
+</details>
+
+
 
 ## Instalación y ejecución
 
