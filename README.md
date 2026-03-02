@@ -251,6 +251,99 @@ Para cada categoría, probamos valores que están justo en el límite para asegu
 * **Seguridad:** Se rechazan clasificaciones para resultados de IMC negativos o absurdamente altos (más de 150).
 
 </details>
+<details>
+<summary><b>Pruebas de Cálculo del Peso Corporal Ideal (PCI o IBW)</b></summary>
+
+Las pruebas del cálculo de **Ideal Body Weight (IBW)** verifican tanto la exactitud matemática de la fórmula implementada como la correcta validación de datos de entrada, siguiendo los requisitos de software médico definidos en el proyecto.
+
+### Pruebas de Cálculo Correcto
+
+Validamos que el sistema aplique correctamente la fórmula basada en la estatura en centímetros:
+
+* **Cálculo válido para hombres:**  
+  Se comprueba que, al introducir una altura válida (ej. 175 cm) y sexo masculino, el resultado concuerde con la fórmula:  
+  50 + 0.9 × (altura − 152.4)
+
+* **Cálculo válido para mujeres:**  
+  Se comprueba que, al introducir una altura válida (ej. 160 cm) y sexo femenino, el resultado concuerde con la fórmula:  
+  45.5 + 0.9 × (altura − 152.4)
+
+Estas pruebas garantizan que el cálculo matemático es correcto y consistente con la especificación clínica adoptada.
+
+---
+
+###  Pruebas de Validación y Gestión de Errores
+
+De acuerdo con los requisitos no funcionales de **Gestión de Errores** y **Validación de Rangos (Data Scrubbing)**, el sistema debe rechazar entradas inválidas mediante la excepción `InvalidHealthDataException`.
+
+Se verifican los siguientes casos:
+
+* **Altura negativa:**  
+  El sistema debe rechazar valores menores que 0 cm.
+
+* **Altura igual a cero:**  
+  Se debe lanzar excepción, ya que naturalmente es un valor imposible.
+
+* **Sexo inválido:**  
+  El sistema debe rechazar cualquier valor distinto de `"male"` o `"female"`.
+
+
+
+---
+
+###  Objetivo de Cobertura
+
+Con estas pruebas se valida:
+
+- Exactitud matemática del cálculo.
+- Control de errores ante datos inválidos.
+- Comportamiento adecuado ante entradas incorrectas.
+
+
+</details>
+
+<details>
+<summary><b>Pruebas de Tasa Metabólica Basal (Mifflin-St.Jeor / BMR)</b></summary>
+
+### Objetivo
+Validar el cálculo correcto de la **Tasa Metabólica Basal (BMR)** mediante la ecuación de **Mifflin-St Jeor**, así como la gestión de errores ante datos inválidos.
+
+### Fórmulas utilizadas
+
+- **Hombres:**  
+  BMR = (10 × peso) + (6.25 × altura) − (5 × edad) + 5
+
+- **Mujeres:**  
+  BMR = (10 × peso) + (6.25 × altura) − (5 × edad) − 161
+
+---
+
+### Casos de prueba
+
+ **Cálculo válido (hombre)**  
+Se verifica el cálculo correcto con valores normales y tolerancia ±0.01.
+
+ **Cálculo válido (mujer)**  
+Se comprueba la correcta aplicación de la constante específica por sexo.
+
+ **Valor de diferencia entre sexos**  
+Con los mismos datos, la diferencia entre hombre y mujer debe ser **166 kcal/día**.
+
+ **Validación de datos inválidos**
+- Peso negativo → `InvalidHealthDataException`
+- Peso igual a cero → excepción
+- Altura negativa → excepción
+- Altura igual a cero → excepción
+
+---
+
+### Cobertura
+Estas pruebas garantizan:
+- Correcta implementación de Mifflin-St Jeor  
+- Diferenciación entre sexo  
+- Precisión decimal en cálculos  
+
+</details>
 
 
 ## Instalación y ejecución
