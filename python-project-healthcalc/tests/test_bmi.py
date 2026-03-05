@@ -12,7 +12,7 @@ class TestBMI:
 
     # --- Tests de Cálculo de la métrica BMI ---
     def test_bmi_valido(self):
-        """Cálculo de BMI con valores estándar válidos"""
+        """Cálculo de BMI con valores estándar dentro del rango establecido."""
         weight = 70.0
         height = 1.75
         expected_bmi = 70.0 / (1.75 ** 2)
@@ -23,7 +23,7 @@ class TestBMI:
         assert result == pytest.approx(expected_bmi, abs=0.01)
 
     def test_bmi_peso_cero(self):
-        """Lanzar excepción cuando el peso es cero"""
+        """Lanza excepción cuando el peso es cero"""
         weight = 0
         height = 1.70
 
@@ -31,12 +31,12 @@ class TestBMI:
             self.health_calc.bmi(weight, height)
 
     def test_bmi_altura_cero(self):
-        """Lanzar excepción cuando la altura es cero"""
+        """Lanza excepción cuando la altura es cero"""
         with pytest.raises(InvalidHealthDataException):
             self.health_calc.bmi(70, 0)
 
     def test_bmi_negativos(self):
-        """Lanzar excepción cuando los valores son negativos (Equivalente a assertAll)"""
+        """Lanza excepción cuando los valores son negativos. """
         weight = -70
         height = 1.70
 
@@ -57,7 +57,7 @@ class TestBMI:
 
     @pytest.mark.parametrize("weight", [-10.0, 0.0, 0.99], ids=lambda x: f"Peso mínimo inválido: {x}kg")
     def test_peso_minimo_imposible(self, weight: float):
-        """Lanzar excepción cuando el peso es negativo o menor que 1kg."""
+        """Lanza excepción cuando el peso es negativo o menor que 1kg (rango inválido)."""
         height = 1.70
 
         with pytest.raises(InvalidHealthDataException):
@@ -65,7 +65,7 @@ class TestBMI:
 
     @pytest.mark.parametrize("weight", [700.1, 1000.0, 5000.0], ids=lambda x: f"Peso máximo inválido: {x}kg")
     def test_peso_maximo_imposible(self, weight: float):
-        """Lanzar excepción cuando el peso es extremadamente alto."""
+        """Lanzar excepción cuando el peso es excesivamente alto."""
         height = 1.70
 
         with pytest.raises(InvalidHealthDataException):

@@ -13,7 +13,7 @@ class TestMifflinStJeor:
     # --- Valid calculations ---
 
     def test_bmr_valido_hombre(self):
-        """Valid BMR calculation for male."""
+        """Cálculo válido de BMR para hombre."""
 
         # Arrange
         weight = 70
@@ -29,7 +29,7 @@ class TestMifflinStJeor:
         assert result == pytest.approx(expected, abs=0.01)
 
     def test_bmr_valido_mujer(self):
-        """Valid BMR calculation for female."""
+        """Cálculo válido de BMR para mujer."""
 
         # Arrange
         weight = 60
@@ -47,7 +47,7 @@ class TestMifflinStJeor:
     # --- Validation tests ---
 
     def test_bmr_peso_cero(self):
-        """Weight = 0 should raise exception."""
+        """Peso = 0 debería lanzar excepción."""
 
         # Arrange
         weight = 0
@@ -60,7 +60,7 @@ class TestMifflinStJeor:
             self.health_calc.bmr(weight, height, age, sex)
 
     def test_bmr_altura_cero(self):
-        """Height = 0 should raise exception."""
+        """Altura = 0 debería lanzar excepción."""
 
         # Arrange
         weight = 70
@@ -73,7 +73,7 @@ class TestMifflinStJeor:
             self.health_calc.bmr(weight, height, age, sex)
 
     def test_bmr_edad_cero(self):
-        """Age = 0 should raise exception."""
+        """Edad = 0 debería lanzar excepción."""
 
         # Arrange
         weight = 70
@@ -86,7 +86,7 @@ class TestMifflinStJeor:
             self.health_calc.bmr(weight, height, age, sex)
 
     def test_bmr_edad_fuera_rango(self):
-        """Age above biological range should raise exception."""
+        """Edad por encima del rango válido debería lanzar excepción."""
 
         # Arrange
         weight = 70
@@ -99,7 +99,7 @@ class TestMifflinStJeor:
             self.health_calc.bmr(weight, height, age, sex)
 
     def test_bmr_sexo_invalido(self):
-        """Invalid sex should raise exception."""
+        """Sexo inválido debería lanzar excepción."""
 
         # Arrange
         weight = 70

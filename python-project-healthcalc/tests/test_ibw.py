@@ -67,7 +67,7 @@ class TestIBW:
             action()
 
     def test_ibw_altura_muy_baja(self):
-        """Altura < 30 debe lanzar excepción."""
+        """Altura < 30 (rango inválido) debe lanzar excepción."""
 
         # Arrange
         height = 20.0
@@ -81,7 +81,7 @@ class TestIBW:
             action()
 
     def test_ibw_altura_muy_alta(self):
-        """Altura > 300 debe lanzar excepción."""
+        """Altura > 300 (rango inválido) debe lanzar excepción."""
 
         # Arrange
         height = 350.0
